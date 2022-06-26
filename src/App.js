@@ -12,6 +12,9 @@ function App() {
   const [showInfo, setShowInfo] = useState(false);
   const [first, setFirst] = useState(0);
   const [last, setLast] = useState(17);
+  const [key, setKey] = useState('home');
+  const [firstFavorite, setFirstFavorite] = useState(0);
+  const [lastFavorite, setLastFavorite] = useState(17);
   
   useEffect(() => {
     if(localStorage.getItem("pokemons") === null){
@@ -45,7 +48,7 @@ function App() {
 
   return (
     <div className="App">
-      {showHomePage && <HomePage pokeInfo={pokeInfo} first={first} last={last} setFirst={setFirst} setLast={setLast} />}
+      {showHomePage && <HomePage pokeInfo={pokeInfo} first={first} last={last} setFirst={setFirst} setLast={setLast} key={key} setKey={setKey} firstFavorite={firstFavorite} lastFavorite={lastFavorite} setFirstFavorite={setFirstFavorite} setLastFavorite={setLastFavorite} />}
       {showInfo && <Info selectedPokemon={selectedPokemon} backFunction={backFunction} />}
     </div>
   );

@@ -1,6 +1,6 @@
 import './../App.css';
 import { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function Info(props) {
@@ -42,8 +42,11 @@ function Info(props) {
   return (
     <div className="list-group">
         {show &&
-            <>
-                <Button variant="secondary" onClick={() => props.backFunction()} >Back</Button>
+            <div>
+            <br />
+                <Button variant="secondary" style={{ width: '15rem' }} onClick={() => props.backFunction()} >Back</Button>
+                <br />
+                <br />
                 <h1>{props.selectedPokemon.name + " "}
                     {favorite ? 
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" onClick={()=>clickFavorite()}>
@@ -55,8 +58,70 @@ function Info(props) {
                         </svg>
                     }
                 </h1>
-                <img src={pokemon.sprites.front_default} />
-            </>
+                <img src={pokemon.sprites.other["official-artwork"].front_default} width={"500rem"} height={"500rem"}/>
+                <p>{pokemon.types.map(type => {
+                    switch(type.type.name) {
+                        case "normal":
+                            return <><Button style={{ backgroundColor:"#797964", borderColor:"#797964" }} disabled>{type.type.name}</Button><a> </a></>;
+                        case "fighting":
+                            return <><Button style={{ backgroundColor:"#a84d3d", borderColor:"#a84d3d" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "flying":
+                            return <><Button style={{ backgroundColor:"#556dff", borderColor:"#556dff" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "poison":
+                            return <><Button style={{ backgroundColor:"#88447a", borderColor:"#88447a" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "ground":
+                            return <><Button style={{ backgroundColor:"#bf9926", borderColor:"#bf9926" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "rock":
+                            return <><Button style={{ backgroundColor:"#a59249", borderColor:"#a59249" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "bug":
+                            return <><Button style={{ backgroundColor:"#83901a", borderColor:"#83901a" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "ghost":
+                            return <><Button style={{ backgroundColor:"#5454b3", borderColor:"#5454b3" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "steel":
+                            return <><Button style={{ backgroundColor:"#8e8ea4", borderColor:"#8e8ea4" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "fire":
+                            return <><Button style={{ backgroundColor:"#d52100", borderColor:"#d52100" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "water":
+                            return <><Button style={{ backgroundColor:"#0080ff", borderColor:"#0080ff" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "grass":
+                            return <><Button style={{ backgroundColor:"#5cb737", borderColor:"#5cb737" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "electric":
+                            return <><Button style={{ backgroundColor:"#c90", borderColor:"#c90" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "psychic":
+                            return <><Button style={{ backgroundColor:"#ff227a", borderColor:"#ff227a" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "ice":
+                            return <><Button style={{ backgroundColor:"#0af", borderColor:"#0af" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "dragon":
+                            return <><Button style={{ backgroundColor:"#4e38e9", borderColor:"#4e38e9" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "dark":
+                            return <><Button style={{ backgroundColor:"#573e31", borderColor:"#573e31" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "fairy":
+                            return <><Button style={{ backgroundColor:"#e76de7", borderColor:"#e76de7" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "unknown":
+                            return <><Button style={{ backgroundColor:"#737373", borderColor:"#737373" }} disabled>{type.type.name}</Button><a> </a></>
+                        case "shadow":
+                            return <><Button style={{ backgroundColor:"black", borderColor:"black" }} disabled>{type.type.name}</Button><a> </a></>
+                    }
+                })}</p>
+                <Table striped bordered hover variant="dark">
+                    <tbody>
+                        <tr>
+                            <th>height</th>
+                            <th>{pokemon.height}</th>
+                        </tr>
+                        <tr>
+                            <th>weight</th>
+                            <th>{pokemon.weight}</th>
+                        </tr>
+                        {pokemon.stats.map((stat) => {
+                            return (<tr>
+                                        <th>{stat.stat.name}</th>
+                                        <th>{stat.base_stat}</th>
+                                    </tr>)
+                        })}
+                    </tbody>
+                </Table>
+            </div>
         }
     </div>
   );
